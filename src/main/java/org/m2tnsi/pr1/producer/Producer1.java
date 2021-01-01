@@ -72,9 +72,7 @@ public class Producer1 extends TimerTask {
 
             // Install the all-trusting host verifier
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
             e.printStackTrace();
         }
     }
@@ -86,7 +84,7 @@ public class Producer1 extends TimerTask {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-        return new KafkaProducer(props);
+        return new KafkaProducer<>(props);
     }
 
     public String getCovidApiSummary() {
@@ -135,11 +133,11 @@ public class Producer1 extends TimerTask {
 
     @Override
     public void run() {
-        Producer pr1 = createProducer();
+        Producer<String, String> pr1 = createProducer();
         String covidInfo = getCovidApiSummary();
         System.out.println("--- Réponse recu par l'API Covid 19 --- ");
         System.out.println(covidInfo);
-        ProducerRecord producerRecord = new ProducerRecord(TOPIC_1, "data", covidInfo);
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_1, "data", covidInfo);
         pr1.send(producerRecord);
         pr1.close();
     }
