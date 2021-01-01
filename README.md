@@ -1,6 +1,6 @@
 # kafka-PR1 SETUP
 
-Fonctionne avec l'image docker suivante
+Fait avec l'image docker suivante
 fichier **docker-compose.yml**
 ```
 ---
