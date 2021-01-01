@@ -1,7 +1,7 @@
 # kafka-PR1 SETUP
 
 Fonctionne avec l'image docker suivante:
-
+```
 ---
 version: '2'
 services:
@@ -107,3 +107,4 @@ services:
       KAFKA_REST_BOOTSTRAP_SERVERS: 'broker:29092'
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
       KAFKA_REST_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+      ```
